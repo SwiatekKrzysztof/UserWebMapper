@@ -24,6 +24,15 @@ public class User {
     public User() {
     }
 
+    public User(User user) {
+        this.id = user.id;
+        this.name = user.name;
+        this.surname = user.surname;
+        this.birthDate = user.birthDate;
+        this.phoneNumber = user.phoneNumber;
+        this.age = user.age;
+    }
+
     public User(String name, String surname, LocalDate birthDate) {
         this.name = name;
         this.surname = surname;

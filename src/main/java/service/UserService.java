@@ -37,10 +37,25 @@ public class UserService {
             } else {
                 newUser.setPhoneNumber(line[3]);
             }
-            users.add(newUser);
+            newUser = normalizeUser(newUser);
+            if(validateUser(newUser)) {
+                users.add(newUser);
+            }
         }
         return users;
     }
+
+    private boolean validateUser(User user) {
+        if(null != user.getPhoneNumber()){
+            if(user.getPhoneNumber().length()!=9)
+            return false;
+        }
+        if(user.getName().equals("") || user.getSurname().equals("")){
+            return false;
+        }
+        return true;
+    }
+
     public void printUsers(List<User> users){
         for (User user:users){
             System.out.println("Name:        "+ user.getName());
@@ -54,8 +69,35 @@ public class UserService {
         return ((int) ChronoUnit.YEARS.between(user.getBirthDate(),LocalDate.now()));
     }
     private User normalizeUser(User user){
-
-
-        return user;
+        User userCopy = new User(user);
+        userCopy.setName
+                (normalizeName(userCopy.getName()));
+        userCopy.setSurname
+                (normalizeSurname(userCopy.getSurname()));
+        if(null!=userCopy.getPhoneNumber())
+        userCopy.setPhoneNumber
+                (normalizePhoneNumber(userCopy.getPhoneNumber()));
+        return userCopy;
+    }
+    private String normalizeName(String name){
+        name = removeSpecialCharacters(name);
+        if(!name.isEmpty()) {
+            name = name.toLowerCase();
+            name = name.substring(0, 1).toUpperCase() + name.substring(1);
+        }
+        return name;
+    }
+    private String normalizeSurname(String surname){
+        return normalizeName(surname);
+    }
+    public String normalizePhoneNumber(String phoneNumber){
+        phoneNumber = phoneNumber.replaceAll("[^0-9]","");
+        if(phoneNumber.equals("")){
+            phoneNumber=null;
+        }
+        return phoneNumber;
+    }
+    private String removeSpecialCharacters(String string){
+        return string.replaceAll("([^A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ])","");
     }
 }

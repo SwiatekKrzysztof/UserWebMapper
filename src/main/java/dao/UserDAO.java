@@ -63,9 +63,7 @@ public class UserDAO{
     TypedQuery<User> typedQuery = entityManager.createQuery("select u from User u order by u.age desc", User.class);
     return typedQuery.getResultList();
   }
-//  public User getUserByPhoneNumber(){
-//
-//  }
+
   public boolean doesPhoneNumberExist(String phoneNumber){
     TypedQuery<User> typedQuery = entityManager
             .createQuery("select u from User u where u.phoneNumber= :phoneNumber",User.class);
