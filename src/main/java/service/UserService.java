@@ -1,12 +1,16 @@
 package service;
 
 import model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
+    private static Logger logger = LogManager.getLogger(UserService.class);
     public List<User> createUsers(List<String> linesList) {
         List<User> users = new ArrayList<>();
         String[] line;
@@ -15,7 +19,7 @@ public class UserService {
             line = linesList.get(i).split(";");
 
             if(line.length<3){
-                // todo log
+                logger.warn("User nr:"+ i +" has too little parameters, User not added to database");
                 continue;
             }
             User newUser = new User();
@@ -24,7 +28,7 @@ public class UserService {
 
             dateLine = line[2].split("\\.");
             if(dateLine.length!=3){
-                //todo log
+                logger.warn("User nr:"+ i +" has wrong birth date, User not added to database");
                 continue;
             }
             newUser.setBirthDate(LocalDate.of(
@@ -47,12 +51,17 @@ public class UserService {
 
     private boolean validateUser(User user) {
         if(null != user.getPhoneNumber()){
-            if(user.getPhoneNumber().length()!=9)
-            return false;
+            if(user.getPhoneNumber().length()!=9) {
+                logger.warn((user.toString()) + "has wrong phone number, User not added to database");
+                return false;
+            }
         }
+
         if(user.getName().equals("") || user.getSurname().equals("")){
+            logger.warn((user.toString())+ " has empty name or surname, User not added to database");
             return false;
         }
+
         return true;
     }
 

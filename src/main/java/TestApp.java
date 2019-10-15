@@ -1,18 +1,17 @@
 import dao.UserDAO;
 import hibernate.util.HibernateUtil;
 import model.User;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import service.FileService;
 import service.UserService;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestApp {
     public static void main(String[] args) {
+        performSomeTask();
 ////        User user =
 ////                new User("Keanu","Reeves", LocalDate.parse("1532-11-01"),"");
 ////        User user1 =
@@ -49,5 +48,13 @@ public class TestApp {
         //
 
 
+    }
+    private static Logger logger = LogManager.getLogger(TestApp.class);
+    public static void performSomeTask(){
+        logger.debug("This is a debug message");
+        logger.info("This is an info message");
+        logger.warn("This is a warn message");
+        logger.error("This is an error message");
+        logger.fatal("This is a fatal message");
     }
 }

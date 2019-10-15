@@ -2,6 +2,9 @@ package dao;
 
 import hibernate.util.HibernateUtil;
 import model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import service.UserService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -10,6 +13,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class UserDAO{
+  private static Logger logger = LogManager.getLogger(UserService.class);
   private final HibernateUtil hibernateUtil = HibernateUtil.getInstance();
   private final EntityManager entityManager = hibernateUtil.getEntityManager();
   public void saveUsers(List<User> users){
@@ -18,6 +22,8 @@ public class UserDAO{
   public void saveUser(User user) {
     if(!doesPhoneNumberExist(user.getPhoneNumber())) {
       hibernateUtil.save(user);
+    }else{
+      logger.warn(user.toString()+"that phone number is already taken");
     }
   }
 
