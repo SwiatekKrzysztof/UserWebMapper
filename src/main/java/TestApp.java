@@ -11,7 +11,6 @@ import java.util.List;
 
 public class TestApp {
     public static void main(String[] args) {
-        performSomeTask();
 ////        User user =
 ////                new User("Keanu","Reeves", LocalDate.parse("1532-11-01"),"");
 ////        User user1 =
@@ -35,7 +34,7 @@ public class TestApp {
         System.out.println("User Count = " + userDAO.getUserCount());
 
 //        userDAO.deleteAllUsers();
-//        System.out.println("Usuwanie");
+//        System.out.println("After Deletion:");
 //        userDAO.getAllUsers().forEach(System.out::println);
 //
 //
@@ -48,13 +47,5 @@ public class TestApp {
         //
 
 
-    }
-    private static Logger logger = LogManager.getLogger(TestApp.class);
-    public static void performSomeTask(){
-        logger.debug("This is a debug message");
-        logger.info("This is an info message");
-        logger.warn("This is a warn message");
-        logger.error("This is an error message");
-        logger.fatal("This is a fatal message");
     }
 }

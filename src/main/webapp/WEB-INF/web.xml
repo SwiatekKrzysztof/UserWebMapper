@@ -4,4 +4,7 @@
 
 <web-app>
   <display-name>Web-TestApp</display-name>
+  <listener>
+    <listener-class>org.h2.server.web.DbStarter</listener-class>
+  </listener>
 </web-app>
