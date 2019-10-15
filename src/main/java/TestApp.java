@@ -13,24 +13,40 @@ import java.util.List;
 
 public class TestApp {
     public static void main(String[] args) {
-        User user =
-                new User("Keanu","Reeves", LocalDate.parse("1532-11-01"),"666666667");
-        User user1 =
-                new User("Keanu","Reeves", LocalDate.parse("1532-11-01"),"666666668");
+//        User user =
+//                new User("Keanu","Reeves", LocalDate.parse("1532-11-01"),"");
+//        User user1 =
+//                new User("Keanua","Reeves", LocalDate.parse("1532-11-01"),"");
         UserDAO userDAO = new UserDAO();
         UserService userService = new UserService();
         FileService fileService = new FileService();
 
-        userDAO.saveUser(user);
-        userDAO.saveUser(user1);
+//        userDAO.saveUser(user);
+//        userDAO.saveUser(user1);
 
-        List<String> testUsersLines = fileService.parseTextFile("C:\\Users\\48501\\TestFolder\\test.txt");
+        List<String> testUsersLines = fileService.parseTextFile("C:\\Users\\48501\\Repositories\\UserWebMapper\\testUgly.csv");
 
         List<User> users = new ArrayList<>(userService.createUsers(testUsersLines));
-//        users.forEach(u -> userDAO.saveUser(u));
         userDAO.saveUsers(users);
 
-        List<User> allUsers = userDAO.getAllUsers();
-        allUsers.forEach(System.out::println);
+        //DAO query testing
+        System.out.println("All Users");
+        userDAO.getAllUsers().forEach(System.out::println);
+        System.out.println("User Count = " + userDAO.getUserCount());
+
+        userDAO.deleteAllUsers();
+        System.out.println("Usuwanie");
+        userDAO.getAllUsers().forEach(System.out::println);
+
+
+//        System.out.println("Oldest user");
+//        System.out.println(userDAO.getOldestUserWithPhoneNumber());
+//        System.out.println("Users by age");
+//        userDAO.getAllUsersOrderedByAge().forEach(System.out::println);
+//        System.out.println("Users with surname Reeves");
+//        userDAO.getUserBySurname("Reeves").forEach(System.out::println);
+        //
+
+
     }
 }
