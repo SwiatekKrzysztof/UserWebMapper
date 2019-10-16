@@ -35,20 +35,16 @@ public class ParseFileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String path = (String) req.getAttribute("path");
-        List<String> lines = fileService.parseTextFile(path);
-        List<User> users = userService.createUsers(lines);
-//        Connection conn = (Connection) getServletContext().getAttribute("connection");
-//        conn.
-        userDAO.saveUsers(users);
-        User keeanu =
-                new User("Keanu", "Reeves", LocalDate.parse("1532-11-01"), "");
-        userDAO.saveUser(keeanu);
         doPost(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/users").forward(req, resp);
+        String path = (String) req.getAttribute("path");
+        List<String> lines = fileService.parseTextFile(path);
+        List<User> users = userService.createUsers(lines);
+        userDAO.saveUsers(users);
+
+        req.getRequestDispatcher("users").forward(req, resp);
     }
 }

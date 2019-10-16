@@ -7,17 +7,14 @@
     <class>model.User</class>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-      <property name="javax.persistence.jdbc.url"    value="jdbc:h2:mem:userDatabase" />
-<!--      <property name="javax.persistence.jdbc.url"-->
-<!--                value="jdbc:h2://localhost:8080/user_web_mapper"/>-->
-<!--      <property name="javax.persistence.jdbc.url"    value="jdbc:h2:~/userDatabase;AUTO_SERVER=TRUE" />-->
+      <property name="javax.persistence.jdbc.url"
+                value="jdbc:h2:mem:userDatabase?useUnicode=yes&amp;characterEncoding=UTF-8" />
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.password" value=""/>
       <property name="h2.console.settings.trace" value="true"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
       <property name="hibernate.hbm2ddl.auto" value="create-drop" />
       <property name="show_sql" value="true"/>
-<!--      <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>-->
     </properties>
   </persistence-unit>
 </persistence>

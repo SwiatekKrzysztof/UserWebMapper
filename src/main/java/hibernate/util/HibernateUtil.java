@@ -9,7 +9,7 @@ public class HibernateUtil {
   private static HibernateUtil instance;
 
   private final EntityManagerFactory entityManagerFactory =
-          Persistence.createEntityManagerFactory("userDatabase");
+          Persistence.createEntityManagerFactory("userDatabase");//todo CHANGE TO userDatabase
   private final EntityManager entityManager = entityManagerFactory.createEntityManager();
 
   public static HibernateUtil getInstance() {

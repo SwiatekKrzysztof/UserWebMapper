@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UsersServlet", value = "/users")
-public class UsersServlet extends HttpServlet {
+@WebServlet(name = "SortUsersByAgeServlet", value = "/usersAgeSort")
+public class SortUsersByAgeServlet extends HttpServlet {
     UserDAO userDAO;
     @Override
     public void init() throws ServletException {
@@ -27,10 +27,9 @@ public class UsersServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession();
-        List<User> users = userDAO.getAllUsers();
+        List<User> users = userDAO.getAllUsersOrderedByAge();
         long count = userDAO.getUserCount();
-        req.setAttribute("users", users);
+        req.setAttribute("users",users);
         req.setAttribute("count",count);
         req.getRequestDispatcher("/users.jsp").forward(req,resp);
     }

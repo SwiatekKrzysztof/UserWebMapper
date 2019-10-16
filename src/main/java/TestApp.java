@@ -32,7 +32,8 @@ public class TestApp {
         System.out.println("All Users");
         userDAO.getAllUsers().forEach(System.out::println);
         System.out.println("User Count = " + userDAO.getUserCount());
-
+        userDAO.deleteUser(1L);
+        userDAO.getAllUsers().forEach(System.out::println);
 //        userDAO.deleteAllUsers();
 //        System.out.println("After Deletion:");
 //        userDAO.getAllUsers().forEach(System.out::println);

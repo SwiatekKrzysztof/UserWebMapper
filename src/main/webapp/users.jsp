@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="dao.UserDAO" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page isELIgnored="false"%>
@@ -23,9 +24,10 @@
 </head>
 <body>
 <main role="main" class="container">
-<%--    <%@include file="header.jsp" %>--%>
+    <%@include file="header.jsp" %>
     <div class="my-3 p-3 bg-white rounded box-shadow">
-        <h6 class="border-bottom border-gray pb-2 mb-0">Users</h6>
+        <%--@elvariable id="count" type="long"--%>
+        <h6 class="border-bottom border-gray pb-2 mb-0">Users in database: ${count}</h6>
         <%--@elvariable id="users" type="java.util.List"--%>
         <c:forEach items="${users}" var="user">
             <div class="media text-muted pt-3">
@@ -33,7 +35,9 @@
                     <strong class="d-block text-gray-dark">${user.name}</strong>
                     <strong class="d-block text-gray-dark">${user.surname}</strong>
                     <strong class="d-block text-gray-dark">${user.age}</strong>
-<%--                    <a href="delete?userIdToDelete=${user.id}"><b>Delete</b></a>--%>
+                    <strong class="d-block text-gray-dark">${user.phoneNumber}</strong>
+                    <a href="delete?userIdToDelete=${user.id}"><b>Delete</b></a>
+
                 </p>
             </div>
         </c:forEach>
