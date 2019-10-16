@@ -5,6 +5,7 @@ import model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import service.FileService;
+import service.ServletService;
 import service.UserService;
 
 import javax.servlet.ServletException;
@@ -40,11 +41,12 @@ public class ParseFileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String path = (String) req.getAttribute("path");
-        List<String> lines = fileService.parseTextFile(path);
-        List<User> users = userService.createUsers(lines);
-        userDAO.saveUsers(users);
-
-        req.getRequestDispatcher("users").forward(req, resp);
+        if(req.getAttribute("message").equals(ServletService.UPLOAD_CORRECT)) {
+            String path = (String) req.getAttribute("path");
+            List<String> lines = fileService.parseTextFile(path);
+            List<User> users = userService.createUsers(lines);
+            userDAO.saveUsers(users);
+        }
+        req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }

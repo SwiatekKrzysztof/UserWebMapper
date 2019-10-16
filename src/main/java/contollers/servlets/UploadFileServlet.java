@@ -9,6 +9,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import service.FileService;
+import service.ServletService;
 import service.UserService;
 
 import javax.servlet.ServletException;
@@ -38,7 +39,7 @@ public class UploadFileServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        doPost(req, resp);
     }
 
     @Override
@@ -54,7 +55,7 @@ public class UploadFileServlet extends HttpServlet {
                         path = UPLOAD_DIRECTORY + File.separator + name;
                         item.write(new File(path));
                         req.setAttribute("path",path);
-                        //saveUsers(path);
+                        req.setAttribute("message", ServletService.UPLOAD_CORRECT);
                     }
                 }
             } catch (Exception e) {

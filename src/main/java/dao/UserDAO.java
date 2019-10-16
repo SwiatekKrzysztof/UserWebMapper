@@ -44,10 +44,15 @@ public class UserDAO{
     return query.setParameter("surname", surname).getResultList();
   }
 
-  public User getOldestUserWithPhoneNumber(){
-    TypedQuery<User> typedQuery = entityManager
-            .createQuery("select u from User u where not(u.phoneNumber is null) order by u.age desc",User.class).setMaxResults(1);
-    return typedQuery.getSingleResult();
+  public List<User> getOldestUserWithPhoneNumber(){
+    TypedQuery<User> typedQuery;
+    try{
+      typedQuery = entityManager
+              .createQuery("select u from User u where not(u.phoneNumber is null) order by u.age desc",User.class).setMaxResults(1);
+      return typedQuery.getResultList();
+    }catch(NoResultException e) {
+      return null;
+    }
   }
 
   public long getUserCount(){

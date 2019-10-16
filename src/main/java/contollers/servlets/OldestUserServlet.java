@@ -9,30 +9,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "SortUsersByAgeServlet", value = "/usersAgeSort")
-public class SortUsersByAgeServlet extends HttpServlet {
+@WebServlet(name = "OldestUserServlet", value = "/oldestUser")
+public class OldestUserServlet extends HttpServlet {
     UserDAO userDAO;
     @Override
-    public void init() throws ServletException {
-        userDAO = new UserDAO();
-        super.init();
-    }
-
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+        doPost(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<User> users = userDAO.getAllUsersOrderedByAge();
+        userDAO = new UserDAO();
+        userDAO.getOldestUserWithPhoneNumber();
         long count = userDAO.getUserCount();
-        req.setAttribute("users",users);
-        req.setAttribute("count",count);
+        List<User> users = userDAO.getOldestUserWithPhoneNumber();
+        req.setAttribute("count", count);
+        req.setAttribute("users", users);
         req.getRequestDispatcher("/users.jsp").forward(req,resp);
     }
 
-
+    @Override
+    public void init() throws ServletException {
+        super.init();
+    }
 }

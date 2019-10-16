@@ -40,12 +40,12 @@
     </div>
     <div class="lh-100">
         <h6 class="mb-0 lh-100 tab">
-            <a class="text-white" href="logout">Oldest user with phone number</a>
+            <a class="text-white" href="oldestUser">Oldest user with phone number</a>
         </h6>
     </div>
     <div class="lh-100 ml-auto">
         <h6 class="mb-0 lh-100">
-            <a class="text-white" href="logout">Add another file</a>
+            <a class="text-white" href="index.jsp">Add another file</a>
         </h6>
     </div>
 </div>
