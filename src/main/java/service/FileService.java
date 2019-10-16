@@ -7,6 +7,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +18,7 @@ public class FileService {
     public List<String> parseTextFile(String path) {
         List<String> linesList = new ArrayList<>();
 
-        try(BufferedReader fileReader = new BufferedReader(new FileReader(path))){
+        try(BufferedReader fileReader = Files.newBufferedReader(Paths.get(path), StandardCharsets.UTF_8)){
             fileReader.lines().distinct().forEach(linesList::add);
         } catch (IOException e) {
             e.printStackTrace();
