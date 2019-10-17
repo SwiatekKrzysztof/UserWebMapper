@@ -39,7 +39,7 @@ public class UserDAO{
 
   }
 
-  public List<User> getUserBySurname(String surname) {
+  public List<User> getUsersBySurname(String surname) {
     TypedQuery<User> query = entityManager.createQuery("select u from User u where u.surname = :surname", User.class);
     return query.setParameter("surname", surname).getResultList();
   }
@@ -68,6 +68,17 @@ public class UserDAO{
   public List<User> getAllUsers(){
     TypedQuery<User> typedQuery = entityManager.createQuery("select u from User u", User.class);
     return typedQuery.getResultList();
+  }
+
+  public List<User> getUsersOnPageOrderedById(int recordsPerPage, int currentPage){
+    int start = currentPage*recordsPerPage-recordsPerPage;
+    TypedQuery<User> typedQuery = entityManager.createQuery("select u from User u order by u.id asc", User.class);
+    return typedQuery.getResultList().subList(start,start+recordsPerPage);
+  }
+  public List<User> getUsersOnPageOrderedByAge(int recordsPerPage, int currentPage){
+    int start = currentPage*recordsPerPage-recordsPerPage;
+    TypedQuery<User> typedQuery = entityManager.createQuery("select u from User u order by u.id desc ", User.class);
+    return typedQuery.getResultList().subList(start,start+recordsPerPage);
   }
 
   public List<User> getAllUsersOrderedByAge(){

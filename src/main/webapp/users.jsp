@@ -2,8 +2,8 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page isELIgnored="false"%>
-<html>
+<%@ page isELIgnored="false" %>
+<html lang="pl-PL">
 <head>
     <title>Users</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -14,9 +14,11 @@
         body {
             background: #f5f5f5
         }
+
         .border-bottom {
             border-bottom: 1px solid #e5e5e5;
         }
+
         .box-shadow {
             box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
         }
@@ -29,7 +31,7 @@
         <%--@elvariable id="count" type="long"--%>
         <h6 class="border-bottom border-gray pb-2 mb-0">Users in database: ${count}</h6>
         <%--@elvariable id="users" type="java.util.List"--%>
-<%--            <c:if test="${users!=null}">--%>
+        <%--            <c:if test="${users!=null}">--%>
         <c:forEach items="${users}" var="user">
             <div class="media text-muted pt-3">
                 <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -40,7 +42,6 @@
                 </p>
             </div>
         </c:forEach>
-<%--            </c:if>--%>
     </div>
 </main>
 </body>
