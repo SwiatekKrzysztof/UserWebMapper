@@ -13,7 +13,7 @@ import java.util.List;
 
 @WebServlet(name = "UsersServlet", value = "/users")
 public class UsersServlet extends HttpServlet {
-    UserDAO userDAO;
+    private UserDAO userDAO;
     @Override
     public void init() throws ServletException {
         userDAO = new UserDAO();

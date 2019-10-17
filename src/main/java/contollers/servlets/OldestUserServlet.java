@@ -14,7 +14,13 @@ import java.util.List;
 
 @WebServlet(name = "OldestUserServlet", value = "/oldestUser")
 public class OldestUserServlet extends HttpServlet {
-    UserDAO userDAO;
+    private UserDAO userDAO;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req,resp);
@@ -31,8 +37,5 @@ public class OldestUserServlet extends HttpServlet {
         req.getRequestDispatcher("/users.jsp").forward(req,resp);
     }
 
-    @Override
-    public void init() throws ServletException {
-        super.init();
-    }
+
 }

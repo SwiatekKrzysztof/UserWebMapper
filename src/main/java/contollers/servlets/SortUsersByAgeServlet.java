@@ -13,7 +13,7 @@ import java.util.List;
 
 @WebServlet(name = "SortUsersByAgeServlet", value = "/usersAgeSort")
 public class SortUsersByAgeServlet extends HttpServlet {
-    UserDAO userDAO;
+    private UserDAO userDAO;
     @Override
     public void init() throws ServletException {
         userDAO = new UserDAO();

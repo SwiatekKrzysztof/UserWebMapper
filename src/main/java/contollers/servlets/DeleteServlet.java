@@ -8,12 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
 
 @WebServlet(name = "DeleteServlet", value = "/delete")
 public class DeleteServlet extends HttpServlet {
-    UserDAO userDAO;
-    //String userId;
+    private UserDAO userDAO;
     @Override
     public void init() throws ServletException {
         userDAO = new UserDAO();
@@ -22,15 +20,12 @@ public class DeleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        delete(req.getParameter("userIdToDelete"));
+        userDAO.deleteUser(Long.parseLong(req.getParameter("userIdToDelete")));
         doPost(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("users").forward(req,resp);
-    }
-    private void delete(String userId){
-        userDAO.deleteUser(Long.parseLong(userId));
+        req.getRequestDispatcher("users").forward(req, resp);
     }
 }

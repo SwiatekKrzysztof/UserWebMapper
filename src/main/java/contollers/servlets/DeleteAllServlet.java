@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @WebServlet(name = "DeleteServlet", value = "/deleteAll")
 public class DeleteAllServlet extends HttpServlet {
-    UserDAO userDAO;
+    private UserDAO userDAO;
     @Override
     public void init() throws ServletException {
         userDAO = new UserDAO();
@@ -20,15 +20,12 @@ public class DeleteAllServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        delete();
+        userDAO.deleteAllUsers();
         doPost(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("users").forward(req,resp);
-    }
-    private void delete(){
-        userDAO.deleteAllUsers();
+        req.getRequestDispatcher("users").forward(req, resp);
     }
 }

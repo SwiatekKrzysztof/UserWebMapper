@@ -2,8 +2,6 @@ package contollers.servlets;
 
 import dao.UserDAO;
 import model.User;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import service.FileService;
 import service.ServletService;
 import service.UserService;
@@ -14,17 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.time.LocalDate;
 import java.util.List;
 
 @WebServlet(name = "ParseFileServlet", value = "/parse")
 public class ParseFileServlet extends HttpServlet {
-    private static Logger logger = LogManager.getLogger(UserService.class);
-    FileService fileService;
-    UserService userService;
-    UserDAO userDAO;
+    private FileService fileService;
+    private UserService userService;
+    private UserDAO userDAO;
 
     @Override
     public void init() throws ServletException {
