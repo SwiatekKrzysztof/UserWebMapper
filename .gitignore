@@ -1,6 +1,9 @@
 *.iml
-.idea/
+
+.idea/*
+!.idea/runConfigurations
 target/
 out/
 logs/
 persistenceMySQL.xml
+
